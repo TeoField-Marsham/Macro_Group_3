@@ -166,6 +166,6 @@ plt.show(block=False)
 
 
 
-# plt.show()
+plt.show()
 
 
