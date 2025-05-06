@@ -70,7 +70,7 @@ plt.figure(figsize=(16,6))
 plt.plot(dates, real_gdp_per_capita, marker='o')
 plt.title('Real GDP per Capita - Finland')
 plt.xlabel('Date')
-plt.ylabel('Real GDP per Capita ($)')
+plt.ylabel('Real GDP per Capita (€)')
 
 # Only show every 4th quarter
 step = 4
