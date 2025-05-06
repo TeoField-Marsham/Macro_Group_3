@@ -54,7 +54,7 @@ for t in range(T):
     K_t, A_t, N_t = out.loc[t, ['K','A','N']]
     k_t = K_t / (A_t * N_t)                # k = K / (A·N)
     y_t = k_t ** alpha
-    Y_t = y_t * A_t * N_t                  # scale back to levels
+    Y_t = y_t * A_t * N_t                  
     C_t = (1 - s_t) * Y_t
     
     # Record current per‑capita/effective‑worker values
@@ -70,23 +70,37 @@ for t in range(T):
 
 # Growth rate of output per worker
 out['g_y'] = out['ln_y'].diff()
+out['ky'] = out['k'] / out['y']
 
+# Calculate the baseline steady state using post-shock values
 k_ss1, y_ss1, c_ss1 = steady_state(alpha, s_new, n, g, delta)
 
 # Create plots
-fig, ax = plt.subplots(3, 2, figsize=(12,10), sharex=True)
+fig, ax = plt.subplots(3, 3, figsize=(12,10), sharex=True)
+
 ax[0,0].plot(out.index, out['k']);       
 ax[0,0].set_title("kₜ (capital / eff. worker)")
+
 ax[0,1].plot(out.index, out['y']);       
-ax[0,1].set_title("ỹₜ (output / eff. worker)")
-ax[1,0].plot(out.index, out['c']);       
-ax[1,0].set_title("ĉₜ (consumption / eff. worker)")
-ax[1,1].plot(out.index, out['ln_y']);    
-ax[1,1].set_title("ln ỹₜ")
-ax[2,0].plot(out.index, out['g_y']);     
-ax[2,0].set_title("gʸₜ = ln ỹₜ - ln ỹₜ₋₁")
-ax[2,1].plot(out.index, out['K']);       
-ax[2,1].set_title("Kₜ (level)")
+ax[0,1].set_title("yₜ (output / eff. worker)")
+
+ax[0,2].plot(out.index, out['c']);       
+ax[0,2].set_title("cₜ (consumption / eff. worker)")
+
+ax[1,0].plot(out.index, out['ln_y']);    
+ax[1,0].set_title("ln(yₜ)")
+
+ax[1,1].plot(out.index, out['g_y']);     
+ax[1,1].set_title("gʸₜ")
+
+ax[1,2].plot(out.index, out['ln_c']); 
+ax[1,2].set_title("ln(cₜ)")
+
+ax[2,1].plot(out.index, out['ky']); 
+ax[2,1].set_title("kₜ / yₜ (capital-output ratio)")
+
+ax[2,0].set_visible(False)
+ax[2,2].set_visible(False)
 
 # Styling for plots
 for a in ax.flatten(): 
