@@ -27,7 +27,7 @@ This repository contains Python implementations of the **general Solow growth mo
 
 * **`plots/`**
 
-  * Output figures for Norway and Sweden (Finland is shown in the script).
+  * Output figures for all three countries.
 
 * **`scripts/`**
 
