@@ -44,6 +44,6 @@ This repository contains Python implementations of the **general Solow growth mo
 
 * **Max** – Norway 
 * **Lynn** – Sweden 
-* **Theo** – Finland
+* **Teo** – Finland
 
 ---
