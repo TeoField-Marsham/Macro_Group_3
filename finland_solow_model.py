@@ -75,6 +75,24 @@ out['ky'] = out['k'] / out['y']
 # Calculate the baseline steady state using post-shock values
 k_ss1, y_ss1, c_ss1 = steady_state(alpha, s_new, n, g, delta)
 
+# Print various data and parameters
+print("\nSteady state per worker before shock:")
+print(f"  k* = {k_ss0:.4f},   y* = {y_ss0:.4f},   c* = {c_ss0:.4f}")
+print("Steady state per worker after shock:")
+print(f"  k* = {k_ss1:.4f},   y* = {y_ss1:.4f},   c* = {c_ss1:.4f}")
+print("Change in steady state per worker:")
+print(f"  Δk*: {(k_ss1 - k_ss0) / k_ss0 * 100:.1f}%")
+print(f"  Δy*: {(y_ss1 - y_ss0) / y_ss0 * 100:.1f}%")
+print(f"  Δc*: {(c_ss1 - c_ss0) / c_ss0 * 100:.1f}%\n")
+
+print("\nParameters for Finland (1999-2019):")
+print(f"  Capital share (alpha): {alpha:.4f}")
+print(f"  Population growth rate (n): {n:.4f}")
+print(f"  Output per capita growth rate (g): {g:.4f}")
+print(f"  Depreciation rate (delta): {delta:.4f}")
+print(f"  Investment rate (s): {s:.4f}")
+print(f"  Investment rate (s_new) after shock: {s_new:.4f}\n")
+
 # Create plots
 fig, ax = plt.subplots(3, 3, figsize=(12,10), sharex=True)
 
@@ -111,21 +129,3 @@ for a in ax.flatten():
 
 plt.tight_layout(); 
 plt.show()
-
-# Print various data and parameters
-print("\nSteady state per worker before shock:")
-print(f"  k* = {k_ss0:.4f},   y* = {y_ss0:.4f},   c* = {c_ss0:.4f}")
-print("Steady state per worker after shock:")
-print(f"  k* = {k_ss1:.4f},   y* = {y_ss1:.4f},   c* = {c_ss1:.4f}")
-print("Change in steady state per worker:")
-print(f"  Δk*: {(k_ss1 - k_ss0) / k_ss0 * 100:.1f}%")
-print(f"  Δy*: {(y_ss1 - y_ss0) / y_ss0 * 100:.1f}%")
-print(f"  Δc*: {(c_ss1 - c_ss0) / c_ss0 * 100:.1f}%\n")
-
-print("\nParameters for Finland (1999-2019):")
-print(f"  Capital share (alpha): {alpha:.4f}")
-print(f"  Population growth rate (n): {n:.4f}")
-print(f"  Output per capita growth rate (g): {g:.4f}")
-print(f"  Depreciation rate (delta): {delta:.4f}")
-print(f"  Investment rate (s): {s:.4f}")
-print(f"  Investment rate (s_new) after shock: {s_new:.4f}\n")
