@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load data
-df = pd.read_excel("pwt100.xlsx", sheet_name="Data")
+df = pd.read_excel("../data/pwt100.xlsx", sheet_name="Data")
 finland = df[df['country'] == 'Finland']
 years = (finland['year'] >= 1999) & (finland['year'] <= 2019) # Use averages between 1999–2019 for key variables
 data = finland.loc[years].sort_values("year").reset_index(drop=True).copy()

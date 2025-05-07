@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import os
 
 # Load parameters
-def load_params_from_excel(path="pwt100.xlsx", country="Sweden", start_year=1999, end_year=2019):
+def load_params_from_excel(path="../data/pwt100.xlsx", country="Sweden", start_year=1999, end_year=2019):
     df = pd.read_excel(path, sheet_name="Data")
     sweden = df[df['country'] == country]
     years = (sweden['year'] >= start_year) & (sweden['year'] <= end_year)
@@ -134,8 +134,7 @@ def plot_all_combined(df_all):
         ax.set_xlim(left=0)
 
     plt.tight_layout()
-    os.makedirs("solow_plots", exist_ok=True)
-    plt.savefig("solow_plots/solow_combined_grid.png", dpi=150)
+    plt.savefig("../plots/swe_solow_combined_grid.png", dpi=150)
     plt.close()
 
 def compute_steady_state(s):
@@ -170,7 +169,7 @@ def print_steady_state_changes():
 
 if __name__ == "__main__":
     df_all = get_combined_data()
-    df_all.to_csv("solow_timeseries_sweden.csv", index=False)
+    df_all.to_csv("../data/solow_timeseries_sweden.csv", index=False)
     plot_all_combined(df_all)
     print_steady_state_changes()
     print("done")
